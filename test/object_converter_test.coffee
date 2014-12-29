@@ -259,3 +259,26 @@ describe 'converting a single object', ->
           "displayName": "Enspiral Services Buckets",
         }        
      })
+
+  describe 'an unknown notification type', ->
+    it 'emits an error object with the full original notification', ->
+      commentCard = loadFixture('unknownNotification')
+      activity = converter.notificationToActivity(commentCard)
+      expect(activity).to.deep.eq({
+        "error": "unknown_notification_type",
+        "originalObject": {
+          "id": "54a0e34f9b66e96be59d5953",
+          "unread": true,
+          "type": "someFakeNotificationType",
+          "date": "2014-12-29T05:14:55.573Z",
+          "data": {
+            "card": {
+              "shortLink": "BcoRhZxG",
+              "idShort": 110,
+              "name": "[2] Import all non-listing data from upper hutt onto production",
+              "id": "546a650bc8837b1d5588a188"
+            },
+          },
+          "idMemberCreator": "5168e66143fa33e94f0018a6"
+        }      
+     })

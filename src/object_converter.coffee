@@ -91,19 +91,29 @@ actionTarget = (notification) ->
   else
     null
 
+validNotificationToActivity = (notification) ->
+  result = resultForNotification(notification)
+  target = actionTarget(notification)
+  actor = personObject(notification.memberCreator)
+
+  output =
+    verb:      verbObject(notification.type)
+    published: notification.date
+    language:  "en"
+    object:    actionObject(notification)
+
+  output.actor  = actor if actor
+  output.target = target if target
+  output.result = result if result
+  output
+
+errorObject = (original) ->
+  error: 'unknown_notification_type'
+  originalObject: original
+
 module.exports =
   notificationToActivity: (notification) ->
-    result = resultForNotification(notification)
-    target = actionTarget(notification)
-    actor = personObject(notification.memberCreator)
-
-    output =
-      verb:      verbObject(notification.type)
-      published: notification.date
-      language:  "en"
-      object:    actionObject(notification)
-
-    output.actor  = actor if actor
-    output.target = target if target
-    output.result = result if result
-    output
+    if notification.type && actions[notification.type]
+      validNotificationToActivity(notification)
+    else
+      errorObject(notification)
