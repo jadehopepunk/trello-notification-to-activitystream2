@@ -1,0 +1,28 @@
+{
+    "id": "549441b2b44209c49898d9",
+    "unread": true,
+    "type": "commentCard",
+    "date": "2014-12-24T04:42:03.678Z",
+    "data": {
+        "text": "This is the comment test that was added.",
+        "card": {
+            "shortLink": "GJGTBRY0",
+            "idShort": 374,
+            "name": "The name of the card",
+            "id": "5496646974598104ca4fc6"
+        },
+        "board": {
+            "shortLink": "FO98bRzg",
+            "name": "My Board",
+            "id": "52b2536953920ef20020bf"
+        }
+    },
+    "idMemberCreator": "52b268857887c135001e9b",
+    "memberCreator": {
+        "id": "52b268857887c135001e9b",
+        "avatarHash": "b44ca6979b87431323664ee46d75c7",
+        "fullName": "Bilbo Baggins",
+        "initials": "BB",
+        "username": "bilbobaggins"
+    }
+  }
