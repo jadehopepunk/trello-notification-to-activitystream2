@@ -1,6 +1,6 @@
 {
   "name": "trello-notification-to-activitystream2",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A node.js transformation stream that converts trello notifications to activitystream2 activities",
   "main": "index.js",
   "scripts": {
