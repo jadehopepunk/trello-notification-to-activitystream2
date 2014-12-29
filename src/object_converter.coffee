@@ -15,6 +15,9 @@ actions = {
   changeCard: 
     displayName: 'changed card'
     object: 'card'
+  mentionedOnCard:
+    displayName: 'mentioned on card'
+    object: 'card'
   addedToBoard:
     displayName: 'added to board'
     object: 'board'

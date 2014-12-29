@@ -1,0 +1,30 @@
+{
+
+    "id": "549256fe5a0df5686d94462e",
+    "unread": true,
+    "type": "mentionedOnCard",
+    "date": "2014-12-18T04:24:30.499Z",
+    "data": {
+        "text": "hey @bilbobaggins, did you hear we needed a burglar?",
+        "card": {
+            "shortLink": "BcoRhZxG",
+            "idShort": 110,
+            "name": "card name",
+            "id": "546a650bc8837b1d5588a188"
+        },
+        "board": {
+            "shortLink": "Az1wabpW",
+            "name": "Some board",
+            "id": "53fc171865067982a4de41b2"
+        }
+    },
+    "idMemberCreator": "52b268857887c135001e9b",
+    "memberCreator": {
+        "id": "52b268857887c135001e9b",
+        "avatarHash": "b44ca6979b87431323664ee46d75c7",
+        "fullName": "Bilbo Baggins",
+        "initials": "BB",
+        "username": "bilbobaggins"
+    }
+
+}

@@ -197,3 +197,40 @@ describe 'converting a single object', ->
           "url": "http://trello.com/b/rfwTnCsC"
         }
      })
+
+  describe 'a mentioned on card event', ->
+    it 'builds a valid activity', ->
+      commentCard = loadFixture('mentionedOnCard')
+      activity = converter.notificationToActivity(commentCard)
+      expect(activity).to.deep.eq({
+        "verb": {
+          "id": "trello.mentionedOnCard",
+          "displayName": "mentioned on card"
+        },
+        "published": "2014-12-18T04:24:30.499Z",
+        "language": "en",
+        "actor": {
+          "objectType": "person",
+          "id": "trello.bilbobaggins",
+          "displayName": "Bilbo Baggins",
+          "url": "http://trello.com/bilbobaggins",
+          "image": {
+            "url": "https://trello-avatars.s3.amazonaws.com/b44ca6979b87431323664ee46d75c7/170.png",
+            "mediaType": "image/jpeg",
+            "width": 170,
+            "height": 170
+          }
+        },
+        "object" : {
+          "objectType": "trello.card",
+          "id": "trello.546a650bc8837b1d5588a188"
+          "url": "http://trello.com/c/BcoRhZxG",
+          "displayName": "card name"
+        },
+        "target" : {
+          "objectType": "trello.board",
+          "id": "trello.53fc171865067982a4de41b2",
+          "displayName": "Some board",
+          "url": "http://trello.com/b/Az1wabpW"
+        }        
+     })
