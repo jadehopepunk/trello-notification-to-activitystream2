@@ -234,3 +234,28 @@ describe 'converting a single object', ->
           "url": "http://trello.com/b/Az1wabpW"
         }        
      })
+
+  describe 'a card due soon event', ->
+    it 'builds a valid activity', ->
+      commentCard = loadFixture('cardDueSoon')
+      activity = converter.notificationToActivity(commentCard)
+      expect(activity).to.deep.eq({
+        "verb": {
+          "id": "trello.cardDueSoon",
+          "displayName": "card due soon"
+        },
+        "published": "2014-12-17T23:11:05.635Z",
+        "language": "en",
+        "object" : {
+          "objectType": "trello.card",
+          "id": "trello.5449bb9636b9b437ea26d44a"
+          "url": "http://trello.com/c/7Ewl2oZU",
+          "displayName": "Project Lead Training workshop [$240]",
+          "endTime": "2014-12-18T23:00:00.000Z"
+        },
+        "target" : {
+          "objectType": "trello.board",
+          "id": "trello.5449ac765ca834b03d93fe39",
+          "displayName": "Enspiral Services Buckets",
+        }        
+     })

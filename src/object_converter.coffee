@@ -18,6 +18,9 @@ actions = {
   mentionedOnCard:
     displayName: 'mentioned on card'
     object: 'card'
+  cardDueSoon:
+    displayName: 'card due soon'
+    object: 'card'
   addedToBoard:
     displayName: 'added to board'
     object: 'board'
@@ -25,27 +28,33 @@ actions = {
 
 objectTranslators = {
   board: (board) ->
-    objectType: "#{prefix}.board"
-    id: "#{prefix}.#{board.id}"
-    displayName: board.name
-    url: "#{url}/b/#{board.shortLink}"
+    output =
+      objectType: "#{prefix}.board"
+      id: "#{prefix}.#{board.id}"
+      displayName: board.name
+    output.url = "#{url}/b/#{board.shortLink}" if board.shortLink
+    output
 
   card: (card) ->
-    objectType: "#{prefix}.card"
-    id: "#{prefix}.#{card.id}"
-    url: "#{url}/c/#{card.shortLink}"
-    displayName: card.name
+    output =
+      objectType: "#{prefix}.card"
+      id: "#{prefix}.#{card.id}"
+      url: "#{url}/c/#{card.shortLink}"
+      displayName: card.name
+    output.endTime = card.due if card.due
+    output
 }
 
 personObject = (person) ->
-  output =
-    objectType: "person"
-    id: "#{prefix}.#{person.username}"
-    displayName: person.fullName
-    url: "#{url}/#{person.username}"
-  if person.avatarHash
-    output.image = imageObject(person.avatarHash)
-  output
+  if person
+    output =
+      objectType: "person"
+      id: "#{prefix}.#{person.username}"
+      displayName: person.fullName
+      url: "#{url}/#{person.username}"
+    if person.avatarHash
+      output.image = imageObject(person.avatarHash)
+    output
 
 imageObject = (avatarHash) ->
   url: "https://trello-avatars.s3.amazonaws.com/#{avatarHash}/#{avatarSize}.png"
@@ -86,14 +95,15 @@ module.exports =
   notificationToActivity: (notification) ->
     result = resultForNotification(notification)
     target = actionTarget(notification)
+    actor = personObject(notification.memberCreator)
 
     output =
       verb:      verbObject(notification.type)
       published: notification.date
       language:  "en"
-      actor:     personObject(notification.memberCreator)
       object:    actionObject(notification)
 
+    output.actor  = actor if actor
     output.target = target if target
     output.result = result if result
     output

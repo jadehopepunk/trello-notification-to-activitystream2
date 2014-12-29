@@ -1,0 +1,21 @@
+{
+
+    "id": "54920d89a36bcbd87ece8b08",
+    "unread": true,
+    "type": "cardDueSoon",
+    "date": "2014-12-17T23:11:05.635Z",
+    "data": {
+        "board": {
+            "name": "Enspiral Services Buckets",
+            "id": "5449ac765ca834b03d93fe39"
+        },
+        "card": {
+            "due": "2014-12-18T23:00:00.000Z",
+            "shortLink": "7Ewl2oZU",
+            "idShort": 21,
+            "name": "Project Lead Training workshop [$240]",
+            "id": "5449bb9636b9b437ea26d44a"
+        }
+    },
+    "idMemberCreator": null
+}
