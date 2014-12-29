@@ -11,15 +11,20 @@ cardObject = (card) ->
   displayName: card.name
 
 personObject = (person) ->
-  objectType: "person"
-  id: "trello.#{person.username}"
-  displayName: person.fullName
-  url: "https://trello.com/#{person.username}"
-  image:
-    url: "https://trello-avatars.s3.amazonaws.com/#{person.avatarHash}/170.png"
-    mediaType: "image/jpeg"
-    width: 170
-    height: 170
+  result =
+    objectType: "person"
+    id: "trello.#{person.username}"
+    displayName: person.fullName
+    url: "https://trello.com/#{person.username}"
+  if person.avatarHash
+    result.image = imageObject(person.avatarHash)
+  result
+
+imageObject = (avatarHash) ->
+  url: "https://trello-avatars.s3.amazonaws.com/#{avatarHash}/170.png"
+  mediaType: "image/jpeg"
+  width: 170
+  height: 170
 
 module.exports =
   notificationToActivity: (notification) ->

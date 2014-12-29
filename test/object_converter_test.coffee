@@ -3,9 +3,12 @@ fs = require('fs')
 converter = require('../src/object_converter')
 
 describe 'converting a single object', ->
+  loadFixture = (name) ->
+    JSON.parse(fs.readFileSync("./test/fixtures/notifications/#{name}.json"))
+
   describe 'a commentCard event', ->
     it 'builds a valid activity', ->
-      commentCard = JSON.parse(fs.readFileSync('./test/fixtures/notifications/commentCard.json'))
+      commentCard = loadFixture('commentCard')
       activity = converter.notificationToActivity(commentCard)
       expect(activity).to.deep.eq({
         "verb": {
@@ -39,3 +42,13 @@ describe 'converting a single object', ->
           "url": "http://trello.com/b/FO98bRzg"
         }
      })
+
+    it 'builds doesnt build an image if there is no avatar hash', ->
+      commentCard = loadFixture('no_avatar')
+      activity = converter.notificationToActivity(commentCard)
+      expect(activity.actor).to.deep.eq({
+        "objectType": "person",
+        "id": "trello.bilbobaggins",
+        "displayName": "Bilbo Baggins",
+        "url": "https://trello.com/bilbobaggins",
+      })      
