@@ -2,24 +2,37 @@ prefix = 'trello'
 url = 'http://trello.com'
 avatarSize = 170
 
-displayNames = {
-  commentCard: 'commented on card'
-  removedFromCard: 'removed from card'
-  addedToCard: 'added to card'
-  changeCard: 'changed card'
+actions = {
+  commentCard: 
+    displayName: 'commented on card'
+    object: 'card'
+  removedFromCard: 
+    displayName: 'removed from card'
+    object: 'card'
+  addedToCard: 
+    displayName: 'added to card'
+    object: 'card'
+  changeCard: 
+    displayName: 'changed card'
+    object: 'card'
+  addedToBoard:
+    displayName: 'added to board'
+    object: 'board'
 }
 
-boardObject = (board) ->
-  objectType: "#{prefix}.board"
-  id: "#{prefix}.#{board.id}"
-  displayName: board.name
-  url: "#{url}/b/#{board.shortLink}"
+objectTranslators = {
+  board: (board) ->
+    objectType: "#{prefix}.board"
+    id: "#{prefix}.#{board.id}"
+    displayName: board.name
+    url: "#{url}/b/#{board.shortLink}"
 
-cardObject = (card) ->
-  objectType: "#{prefix}.card"
-  id: "#{prefix}.#{card.id}"
-  url: "#{url}/c/#{card.shortLink}"
-  displayName: card.name
+  card: (card) ->
+    objectType: "#{prefix}.card"
+    id: "#{prefix}.#{card.id}"
+    url: "#{url}/c/#{card.shortLink}"
+    displayName: card.name
+}
 
 personObject = (person) ->
   output =
@@ -39,26 +52,45 @@ imageObject = (avatarHash) ->
 
 verbObject = (notificationType) ->
   id: "trello.#{notificationType}"
-  displayName: displayNames[notificationType]
+  displayName: actions[notificationType].displayName
 
 resultForNotification = (notification) ->
   if notification.type == 'commentCard'
     {text: notification.data.text}
 
+dataObject = (objectType, notification) ->
+  objectData = notification.data[objectType]
+  objectMethod = objectTranslators[objectType]
+
+  objectMethod(objectData)
+
+actionObject = (notification) ->
+  objectType = actions[notification.type].object
+  objectData = notification.data[objectType]
+  objectMethod = objectTranslators[objectType]
+
+  objectMethod(objectData)
+
+actionTarget = (notification) ->
+  objectType = actions[notification.type].object
+  if objectType == 'card'
+    targetType = 'board'
+    dataObject 'board', notification
+  else
+    null
+
 module.exports =
   notificationToActivity: (notification) ->
     result = resultForNotification(notification)
+    target = actionTarget(notification)
 
     output =
-      verb:
-        verbObject(notification.type)
+      verb:      verbObject(notification.type)
       published: notification.date
-      language: "en"
-      actor:
-        personObject(notification.memberCreator)
-      object:
-        cardObject(notification.data.card)
-      target:
-        boardObject(notification.data.board)
+      language:  "en"
+      actor:     personObject(notification.memberCreator)
+      object:    actionObject(notification)
+
+    output.target = target if target
     output.result = result if result
     output

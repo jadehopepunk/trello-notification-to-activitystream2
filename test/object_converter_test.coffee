@@ -166,3 +166,34 @@ describe 'converting a single object', ->
           "url": "http://trello.com/b/Az1wabpW"
         }
      })
+
+  describe 'an added to board event', ->
+    it 'builds a valid activity', ->
+      commentCard = loadFixture('addedToBoard')
+      activity = converter.notificationToActivity(commentCard)
+      expect(activity).to.deep.eq({
+        "verb": {
+          "id": "trello.addedToBoard",
+          "displayName": "added to board"
+        },
+        "published": "2014-12-19T04:33:13.547Z",
+        "language": "en",
+        "actor": {
+          "objectType": "person",
+          "id": "trello.bilbobaggins",
+          "displayName": "Bilbo Baggins",
+          "url": "http://trello.com/bilbobaggins",
+          "image": {
+            "url": "https://trello-avatars.s3.amazonaws.com/b44ca6979b87431323664ee46d75c7/170.png",
+            "mediaType": "image/jpeg",
+            "width": 170,
+            "height": 170
+          }
+        },
+        "object" : {
+          "objectType": "trello.board",
+          "id": "trello.54936b27cba4128aefc0ebe1",
+          "displayName": "Some board",
+          "url": "http://trello.com/b/rfwTnCsC"
+        }
+     })

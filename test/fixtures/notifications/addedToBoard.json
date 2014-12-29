@@ -1,0 +1,25 @@
+{
+
+    "id": "5493aa89a69a10895c2567d5",
+    "unread": true,
+    "type": "addedToBoard",
+    "date": "2014-12-19T04:33:13.547Z",
+    "data": {
+        "memberType": "normal",
+        "idMember": "4f57dd7de7e55b7b16930c78",
+        "board": {
+            "shortLink": "rfwTnCsC",
+            "name": "Some board",
+            "id": "54936b27cba4128aefc0ebe1"
+        }
+    },
+    "idMemberCreator": "52b268857887c135001e9b",
+    "memberCreator": {
+        "id": "52b268857887c135001e9b",
+        "avatarHash": "b44ca6979b87431323664ee46d75c7",
+        "fullName": "Bilbo Baggins",
+        "initials": "BB",
+        "username": "bilbobaggins"
+    }
+
+}
