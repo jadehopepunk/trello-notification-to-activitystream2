@@ -1,0 +1,29 @@
+{
+
+    "id": "54a0e34f9b66e96be59d5953",
+    "unread": true,
+    "type": "removedFromCard",
+    "date": "2014-12-29T05:14:55.573Z",
+    "data": {
+        "card": {
+            "shortLink": "BcoRhZxG",
+            "idShort": 110,
+            "name": "[2] Import all non-listing data from upper hutt onto production",
+            "id": "546a650bc8837b1d5588a188"
+        },
+        "board": {
+            "shortLink": "Az1wabpW",
+            "name": "PropertyNZ Sprint",
+            "id": "53fc171865067982a4de41b2"
+        }
+    },
+    "idMemberCreator": "5168e66143fa33e94f0018a6",
+    "memberCreator": {
+        "id": "5168e66143fa33dfds0018a6",
+        "avatarHash": "04efae26fd242a912663e3630551b6",
+        "fullName": "Samwise Gamgee",
+        "initials": "SG",
+        "username": "samgamgee"
+    }
+
+}
