@@ -3,8 +3,9 @@ url = 'http://trello.com'
 avatarSize = 170
 
 displayNames = {
-  commentCard: 'comment on card',
+  commentCard: 'comment on card'
   removedFromCard: 'removed from card'
+  addedToCard: 'added to card'
 }
 
 boardObject = (board) ->

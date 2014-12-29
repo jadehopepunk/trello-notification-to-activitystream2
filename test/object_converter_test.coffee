@@ -89,3 +89,40 @@ describe 'converting a single object', ->
           "url": "http://trello.com/b/Az1wabpW"
         }
      })
+
+  describe 'an addedToCard event', ->
+    it 'builds a valid activity', ->
+      commentCard = loadFixture('addedToCard')
+      activity = converter.notificationToActivity(commentCard)
+      expect(activity).to.deep.eq({
+        "verb": {
+          "id": "trello.addedToCard",
+          "displayName": "added to card"
+        },
+        "published": "2014-12-29T05:14:55.573Z",
+        "language": "en",
+        "actor": {
+          "objectType": "person",
+          "id": "trello.samgamgee",
+          "displayName": "Samwise Gamgee",
+          "url": "http://trello.com/samgamgee",
+          "image": {
+            "url": "https://trello-avatars.s3.amazonaws.com/04efae26fd242a912663e3630551b6/170.png",
+            "mediaType": "image/jpeg",
+            "width": 170,
+            "height": 170
+          }
+        },
+        "object" : {
+          "objectType": "trello.card",
+          "id": "trello.546a650bc8837b1d5588a188"
+          "url": "http://trello.com/c/BcoRhZxG",
+          "displayName": "[2] Import all non-listing data from upper hutt onto production"
+        },
+        "target" : {
+          "objectType": "trello.board",
+          "id": "trello.53fc171865067982a4de41b2",
+          "displayName": "PropertyNZ Sprint",
+          "url": "http://trello.com/b/Az1wabpW"
+        }
+     })
