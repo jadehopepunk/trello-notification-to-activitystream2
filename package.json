@@ -4,7 +4,10 @@
   "description": "A node.js transformation stream that converts trello notifications to activitystream2 activities",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive --compilers coffee:coffee-script/register test"
+    "test": "mocha --recursive --compilers coffee:coffee-script/register test",
+    "build": "coffee -o lib -c src",
+    "watch": "coffee -o lib -cw src",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",

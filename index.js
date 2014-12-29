@@ -1,2 +1,1 @@
-require('coffee-script/register')
-module.exports = require('./src/object_stream.coffee')
+module.exports = require('./lib/object_stream')
