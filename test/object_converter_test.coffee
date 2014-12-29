@@ -9,7 +9,7 @@ describe 'converting a single object', ->
   describe 'a commentCard event', ->
     it 'builds a valid activity', ->
       commentCard = loadFixture('commentCard')
-      activity = converter.notificationToActivity(commentCard)
+      activity = converter(commentCard)
       expect(activity).to.deep.eq({
         "verb": {
           "id": "trello.commentCard",
@@ -48,7 +48,7 @@ describe 'converting a single object', ->
 
     it 'builds doesnt build an image if there is no avatar hash', ->
       commentCard = loadFixture('no_avatar')
-      activity = converter.notificationToActivity(commentCard)
+      activity = converter(commentCard)
       expect(activity.actor).to.deep.eq({
         "objectType": "person",
         "id": "trello.bilbobaggins",
@@ -59,7 +59,7 @@ describe 'converting a single object', ->
   describe 'a removedFromCard event', ->
     it 'builds a valid activity', ->
       commentCard = loadFixture('removedFromCard')
-      activity = converter.notificationToActivity(commentCard)
+      activity = converter(commentCard)
       expect(activity).to.deep.eq({
         "verb": {
           "id": "trello.removedFromCard",
@@ -96,7 +96,7 @@ describe 'converting a single object', ->
   describe 'an addedToCard event', ->
     it 'builds a valid activity', ->
       commentCard = loadFixture('addedToCard')
-      activity = converter.notificationToActivity(commentCard)
+      activity = converter(commentCard)
       expect(activity).to.deep.eq({
         "verb": {
           "id": "trello.addedToCard",
@@ -133,7 +133,7 @@ describe 'converting a single object', ->
   describe 'a changedCard event', ->
     it 'builds a valid activity', ->
       commentCard = loadFixture('changedCard')
-      activity = converter.notificationToActivity(commentCard)
+      activity = converter(commentCard)
       expect(activity).to.deep.eq({
         "verb": {
           "id": "trello.changeCard",
@@ -170,7 +170,7 @@ describe 'converting a single object', ->
   describe 'an added to board event', ->
     it 'builds a valid activity', ->
       commentCard = loadFixture('addedToBoard')
-      activity = converter.notificationToActivity(commentCard)
+      activity = converter(commentCard)
       expect(activity).to.deep.eq({
         "verb": {
           "id": "trello.addedToBoard",
@@ -201,7 +201,7 @@ describe 'converting a single object', ->
   describe 'a mentioned on card event', ->
     it 'builds a valid activity', ->
       commentCard = loadFixture('mentionedOnCard')
-      activity = converter.notificationToActivity(commentCard)
+      activity = converter(commentCard)
       expect(activity).to.deep.eq({
         "verb": {
           "id": "trello.mentionedOnCard",
@@ -238,7 +238,7 @@ describe 'converting a single object', ->
   describe 'a card due soon event', ->
     it 'builds a valid activity', ->
       commentCard = loadFixture('cardDueSoon')
-      activity = converter.notificationToActivity(commentCard)
+      activity = converter(commentCard)
       expect(activity).to.deep.eq({
         "verb": {
           "id": "trello.cardDueSoon",
@@ -263,7 +263,7 @@ describe 'converting a single object', ->
   describe 'an unknown notification type', ->
     it 'emits an error object with the full original notification', ->
       commentCard = loadFixture('unknownNotification')
-      activity = converter.notificationToActivity(commentCard)
+      activity = converter(commentCard)
       expect(activity).to.deep.eq({
         "error": "unknown_notification_type",
         "originalObject": {

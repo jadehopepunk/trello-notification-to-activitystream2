@@ -111,8 +111,7 @@ errorObject = (original) ->
   error: 'unknown_notification_type'
   originalObject: original
 
-module.exports =
-  notificationToActivity: (notification) ->
+module.exports = (notification) ->
     if notification.type && actions[notification.type]
       validNotificationToActivity(notification)
     else

@@ -26,9 +26,12 @@
   "homepage": "https://github.com/craigambrose/trello-notification-to-activitystream2",
   "devDependencies": {
     "chai": "^1.10.0",
-    "mocha": "^2.1.0"
+    "mocha": "^2.1.0",
+    "stdout": "0.0.3",
+    "trello-notification-stream": "^0.1.1"
   },
   "dependencies": {
-    "coffee-script": "^1.8.0"
+    "coffee-script": "^1.8.0",
+    "through2-map": "^1.4.0"
   }
 }
