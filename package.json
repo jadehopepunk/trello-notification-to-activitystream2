@@ -1,0 +1,34 @@
+{
+  "name": "trello-notification-to-activitystream2",
+  "version": "0.1.0",
+  "description": "A node.js transformation stream that converts trello notifications to activitystream2 activities",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive --compilers coffee:coffee-script/register test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/craigambrose/trello-notification-to-activitystream2.git"
+  },
+  "keywords": [
+    "activity",
+    "activitystream",
+    "activitystream2",
+    "trello",
+    "notifications",
+    "stream"
+  ],
+  "author": "Craig Ambrose",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/craigambrose/trello-notification-to-activitystream2/issues"
+  },
+  "homepage": "https://github.com/craigambrose/trello-notification-to-activitystream2",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0"
+  },
+  "dependencies": {
+    "coffee-script": "^1.8.0"
+  }
+}
